@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8">
 
-    <!-- Fix validator error by allowing Referer -->
-    <meta name="referrer" content="origin-when-cross-origin" />
+    <!-- Fix Referer warning -->
+    <meta name="referrer" content="origin-when-cross-origin">
 
-    <link rel="icon" type="image/png" href="%PUBLIC_URL%/favicon.png" />
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.png" />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/favicon.png" />
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/favicon.png">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta name="description" content="Custom websites built from code" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Custom websites built from code">
 
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="manifest" href="/manifest.json">
     <title>CodeBuiltSites</title>
   </head>
 
@@ -23,22 +23,13 @@
 
     <div id="root"></div>
 
-    <!-- ✅ REQUIRED FOR NETLIFY FORM DETECTION -->
-    <form 
-      name="contact" 
-      method="POST"
-      netlify 
-      data-netlify="true"
-      netlify-honeypot="bot-field"
-      hidden
-    >
-      <input type="hidden" name="form-name" value="contact" />
-      <input type="text" name="name" />
-      <input type="email" name="email" />
+    <!-- Netlify Hidden Form -->
+    <form name="contact" method="POST" data-netlify="true" hidden>
+      <input type="hidden" name="form-name" value="contact">
+      <input type="text" name="name">
+      <input type="email" name="email">
       <textarea name="message"></textarea>
-
-      <!-- Honeypot field -->
-      <input type="text" name="bot-field" />
+      <input type="text" name="bot-field">
     </form>
   </body>
 </html>

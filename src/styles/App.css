@@ -791,6 +791,37 @@ body {
     padding: 1rem;
   }
 }
+.btn.secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-main);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.9rem 1.7rem;
+  font-size: 1.05rem;
+  border-radius: 12px;
+  transition: var(--transition-fast);
+}
+
+.btn.secondary:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.35);
+  transform: translateY(-2px);
+}
+.btn.secondary {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #e5e7eb;
+  padding: 0.9rem 1.7rem;
+  border-radius: 12px;
+  backdrop-filter: blur(4px);
+  transition: 0.2s ease;
+}
+
+.btn.secondary:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.25);
+}
+
 /* HAMBURGER BUTTON (hidden on desktop) */
 .hamburger {
   display: none;
