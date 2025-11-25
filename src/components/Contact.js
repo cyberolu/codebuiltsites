@@ -13,11 +13,15 @@ function Contact() {
           name="contact"
           method="POST"
           data-netlify="true"
+          netlify-honeypot="bot-field"
           onSubmit={() => setSubmitted(true)}
           className="contact-form"
         >
           {/* REQUIRED hidden form name */}
           <input type="hidden" name="form-name" value="contact" />
+
+          {/* REQUIRED honeypot spam field */}
+          <input type="hidden" name="bot-field" />
 
           <div className="form-group">
             <label>Name</label>
