@@ -14,14 +14,14 @@ function Contact() {
           method="POST"
           data-netlify="true"
           netlify-honeypot="bot-field"
-          onSubmit={() => setSubmitted(true)}
           className="contact-form"
+          onSubmit={() => setSubmitted(true)}  // allow browser to POST
         >
-          {/* REQUIRED hidden form name */}
+          {/* REQUIRED hidden field */}
           <input type="hidden" name="form-name" value="contact" />
 
-          {/* REQUIRED honeypot spam field */}
-          <input type="hidden" name="bot-field" />
+          {/* Honeypot field */}
+          <input type="text" name="bot-field" style={{ display: "none" }} />
 
           <div className="form-group">
             <label>Name</label>
@@ -38,7 +38,7 @@ function Contact() {
             <textarea name="message" rows="5" required></textarea>
           </div>
 
-          <button className="btn primary contact-btn" type="submit">
+          <button type="submit" className="btn primary contact-btn">
             Send Message
           </button>
         </form>
