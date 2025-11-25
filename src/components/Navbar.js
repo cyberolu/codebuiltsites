@@ -11,7 +11,7 @@ function Navbar({ currentPage, onNavigate }) {
   return (
     <nav className="navbar">
       <div className="navbar-brand">
-        <img src="/logo192.png" alt="Logo" className="site-logo" />
+        <img src="/logo.png" alt="Logo" className="site-logo" />
         <span className="site-name">CodeBuiltSites</span>
       </div>
 

@@ -377,7 +377,7 @@ body {
 }
 
 /* =========================
-   COMPARISON TABLE (FIXED)
+   FIXED COMPARISON TABLE
    ========================= */
 
 .why-compare {
@@ -393,6 +393,7 @@ body {
   gap: 0.75rem;
 }
 
+/* Desktop layout: 3 columns */
 .why-compare-row {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -400,6 +401,7 @@ body {
   border-radius: 0.6rem;
   background: rgba(15, 23, 42, 0.9);
   gap: 1rem;
+  align-items: start;
 }
 
 .why-compare-row:nth-child(even):not(.why-compare-head) {
@@ -414,10 +416,12 @@ body {
   margin-bottom: 0.3rem;
 }
 
+/* LABEL column (Feature name) */
 .why-compare-row div:first-child {
   font-weight: 700;
   color: var(--text-main);
 }
+
 
 /* =========================
    ABOUT SECTION
@@ -845,5 +849,45 @@ body {
 
   .navbar {
     position: relative;
+  }
+}
+/* MOBILE FIXED STACKED TABLE */
+@media (max-width: 768px) {
+
+  /* Hide desktop header */
+  .why-compare-head {
+    display: none;
+  }
+
+  /* Stack rows vertically BUT keep 3 labelled blocks per row */
+  .why-compare-row {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+
+  /* Transform each row into 3 labelled blocks */
+  .why-compare-row div {
+    margin-bottom: 0.7rem;
+    padding: 0.8rem;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  /* Add mobile label headings for clarity */
+  .why-compare-row div:nth-child(2)::before {
+    content: "Hand-Coded:";
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    color: var(--accent);
+  }
+
+  .why-compare-row div:nth-child(3)::before {
+    content: "Template Builder:";
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    color: #f87171;
   }
 }
