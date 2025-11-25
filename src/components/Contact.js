@@ -3,6 +3,33 @@ import React, { useState } from "react";
 function Contact() {
   const [submitted, setSubmitted] = useState(false);
 
+  function encode(data) {
+    return Object.keys(data)
+      .map(
+        (key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
+      )
+      .join("&");
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({
+        "form-name": "contact",
+        name: form.name.value,
+        email: form.email.value,
+        message: form.message.value,
+      }),
+    })
+      .then(() => setSubmitted(true))
+      .catch((error) => alert("Error submitting form: " + error));
+  };
+
   return (
     <section className="contact-section">
       <h2 className="section-title">Contact Us</h2>
@@ -14,14 +41,12 @@ function Contact() {
           method="POST"
           data-netlify="true"
           netlify-honeypot="bot-field"
+          onSubmit={handleSubmit}
           className="contact-form"
-          onSubmit={() => setSubmitted(true)}  // allow browser to POST
         >
-          {/* REQUIRED hidden field */}
+          {/* Required hidden field */}
           <input type="hidden" name="form-name" value="contact" />
-
-          {/* Honeypot field */}
-          <input type="text" name="bot-field" style={{ display: "none" }} />
+          <input type="hidden" name="bot-field" />
 
           <div className="form-group">
             <label>Name</label>
@@ -38,7 +63,7 @@ function Contact() {
             <textarea name="message" rows="5" required></textarea>
           </div>
 
-          <button type="submit" className="btn primary contact-btn">
+          <button className="btn primary contact-btn" type="submit">
             Send Message
           </button>
         </form>
