@@ -1,30 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
- <head>
-  <meta name="referrer" content="strict-origin-when-cross-origin" />
-  <meta charset="utf-8" />
-  <link rel="icon" type="image/png" href="%PUBLIC_URL%/favicon.png" />
-<link rel="shortcut icon" href="%PUBLIC_URL%/favicon.png" />
-<link rel="apple-touch-icon" href="%PUBLIC_URL%/favicon.png" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#000000" />
-  <meta name="description" content="Custom websites built from code" />
-  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo.png" />
-  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-  <title>CodeBuiltSites</title>
-</head>
+  <head>
+    <meta charset="utf-8" />
+
+    <!-- Fix validator error by allowing Referer -->
+    <meta name="referrer" content="origin-when-cross-origin" />
+
+    <link rel="icon" type="image/png" href="%PUBLIC_URL%/favicon.png" />
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.png" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/favicon.png" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Custom websites built from code" />
+
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <title>CodeBuiltSites</title>
+  </head>
 
   <body>
-
     <noscript>You need to enable JavaScript to run this app.</noscript>
+
     <div id="root"></div>
 
-    <!-- ✅ Netlify form detection must be inside the body -->
-    <form name="contact" netlify hidden>
+    <!-- ✅ REQUIRED FOR NETLIFY FORM DETECTION -->
+    <form 
+      name="contact" 
+      method="POST"
+      netlify 
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+      hidden
+    >
+      <input type="hidden" name="form-name" value="contact" />
       <input type="text" name="name" />
       <input type="email" name="email" />
       <textarea name="message"></textarea>
-    </form>
 
+      <!-- Honeypot field -->
+      <input type="text" name="bot-field" />
+    </form>
   </body>
 </html>
