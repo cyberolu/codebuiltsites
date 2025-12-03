@@ -7,7 +7,10 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import Pricing from "./components/Pricing";
 import WhyCode from "./components/WhyCode";
-import Footer from "./components/Footer"; // <-- ADD THIS
+import Footer from "./components/Footer";
+import Testimonials from "./components/Testimonials";
+import Feedback from "./components/Feedback";  // <-- ADDED
+
 
 function App() {
   const [currentPage, setCurrentPage] = useState("home");
@@ -16,23 +19,38 @@ function App() {
     switch (currentPage) {
       case "home":
         return (
-          <Hero
-            onContactClick={() => setCurrentPage("contact")}
-            onServicesClick={() => setCurrentPage("services")}
-          />
+          <>
+            <Hero
+              onContactClick={() => setCurrentPage("contact")}
+              onServicesClick={() => setCurrentPage("services")}
+            />
+          </>
         );
+
       case "services":
         return <Services />;
+
       case "portfolio":
-        return <Portfolio />;
+        return (
+          <>
+            <Portfolio />
+            <Testimonials />
+            <Feedback />   {/* <-- ADDED */}
+          </>
+        );
+
       case "about":
         return <About />;
+
       case "pricing":
         return <Pricing onChoosePlan={() => setCurrentPage("contact")} />;
+
       case "whycode":
         return <WhyCode />;
+
       case "contact":
         return <Contact />;
+
       default:
         return <Hero />;
     }
@@ -42,9 +60,11 @@ function App() {
     <div className="app">
       <Navbar currentPage={currentPage} onNavigate={setCurrentPage} />
 
-      <main className="main-content">{renderPage()}</main>
+      <main className="main-content">
+        {renderPage()}
+      </main>
 
-      <Footer />  {/* <-- ADD FOOTER HERE */}
+      <Footer />
     </div>
   );
 }
