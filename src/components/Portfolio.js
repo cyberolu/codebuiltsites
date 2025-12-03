@@ -1,57 +1,45 @@
 import React, { useState, useEffect } from "react";
 
-function Portfolio() {
-  const projects = [
-    {
-      title: "Annabelle Fasuba Athletics",
-      type: "Dynamic Website",
-      image: "/portfolio/annabelles-website.jpg",
-      tech: ["React", "Node", "Express", "MySQL"],
-      description:
-        "A dynamic sports performance website with athlete profiles, race statistics, and media content. Fully responsive and custom built.",
-    },
-    {
-      title: "Online Physiotherapy Platform",
-      type: "Prototype Template",
-      image: "/portfolio/online-physiotherapy.jpg",
-      tech: ["React", "API-Ready Layout"],
-      description:
-        "A professional physiotherapy booking interface design with session scheduling, service pages and contact forms.",
-    },
-    {
-      title: "TrustMark Business Landing",
-      type: "Static Template",
-      image: "/portfolio/trustmark.jpg",
-      tech: ["HTML", "CSS"],
-      description:
-        "A dark-themed landing page for service-based businesses. Optimised for clarity, conversions and mobile-first performance.",
-    },
-  ];
+const projects = [
+  {
+    title: "Annabelle Fasuba Athletics",
+    type: "Dynamic Website",
+    image: "/portfolio/annabelles-website.jpg",
+    tech: ["React", "Node", "Express", "MySQL"],
+    description:
+      "A dynamic sports performance website with athlete profiles, race statistics, and media content. Fully responsive and custom built."
+  },
+  {
+    title: "Online Physiotherapy Platform",
+    type: "Prototype Template",
+    image: "/portfolio/online-physiotherapy.jpg",
+    tech: ["React", "API-Ready Layout"],
+    description:
+      "A professional physiotherapy booking interface design with session scheduling, service pages and contact forms."
+  },
+  {
+    title: "TrustMark Business Landing",
+    type: "Static Template",
+    image: "/portfolio/trustmark.jpg",
+    tech: ["HTML", "CSS"],
+    description:
+      "A dark-themed landing page for service-based businesses. Optimised for clarity, conversions and mobile-first performance."
+  }
+];
 
-  // LIGHTBOX STATE
+function Portfolio() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Open
   const openLightbox = (index) => {
     setCurrentIndex(index);
     setLightboxOpen(true);
-    document.body.style.overflow = "hidden"; // disable scroll
+    document.body.style.overflow = "hidden";
   };
 
-  // Close
   const closeLightbox = () => {
     setLightboxOpen(false);
-    document.body.style.overflow = "auto"; // restore scroll
-  };
-
-  // Navigation
-  const nextImage = () => {
-    setCurrentIndex((i) => (i + 1) % projects.length);
-  };
-
-  const prevImage = () => {
-    setCurrentIndex((i) => (i - 1 + projects.length) % projects.length);
+    document.body.style.overflow = "auto";
   };
 
   // Keyboard controls
@@ -59,9 +47,17 @@ function Portfolio() {
     if (!lightboxOpen) return;
 
     const handleKey = (e) => {
-      if (e.key === "Escape") closeLightbox();
-      if (e.key === "ArrowRight") nextImage();
-      if (e.key === "ArrowLeft") prevImage();
+      if (e.key === "Escape") {
+        closeLightbox();
+      }
+
+      if (e.key === "ArrowRight") {
+        setCurrentIndex((i) => (i + 1) % projects.length);
+      }
+
+      if (e.key === "ArrowLeft") {
+        setCurrentIndex((i) => (i - 1 + projects.length) % projects.length);
+      }
     };
 
     window.addEventListener("keydown", handleKey);
@@ -80,12 +76,10 @@ function Portfolio() {
       <div className="cards-grid">
         {projects.map((p, i) => (
           <article className="portfolio-card fade-up" key={i}>
-
-            {/* THUMBNAIL */}
             <div className="project-thumb" onClick={() => openLightbox(i)}>
-              <img 
-                src={p.image} 
-                alt={p.title} 
+              <img
+                src={p.image}
+                alt={p.title}
                 loading="lazy"
               ></img>
             </div>
@@ -99,13 +93,11 @@ function Portfolio() {
                 <span className="tech-pill" key={index}>{t}</span>
               ))}
             </div>
-
           </article>
         ))}
       </div>
 
-      {/* LIGHTBOX MODAL */}
-      <div 
+      <div
         className={`lightbox-modal ${lightboxOpen ? "active" : ""}`}
         onClick={closeLightbox}
       >
@@ -120,32 +112,34 @@ function Portfolio() {
           </p>
         </div>
 
-        {/* FIXED NAVIGATION BUTTONS */}
-        <button 
+        <button
           className="lightbox-nav"
           id="lightboxPrev"
           onClick={(e) => {
             e.stopPropagation();
-            prevImage();
+            setCurrentIndex((i) => (i - 1 + projects.length) % projects.length);
           }}
-        >‹</button>
+        >
+          ‹
+        </button>
 
-        <button 
+        <button
           className="lightbox-nav"
           id="lightboxNext"
           onClick={(e) => {
             e.stopPropagation();
-            nextImage();
+            setCurrentIndex((i) => (i + 1) % projects.length);
           }}
-        >›</button>
+        >
+          ›
+        </button>
 
-        <span 
+        <span
           className="lightbox-close"
-          onClick={(e) => {
-            e.stopPropagation();
-            closeLightbox();
-          }}
-        >×</span>
+          onClick={closeLightbox}
+        >
+          ×
+        </span>
       </div>
     </section>
   );

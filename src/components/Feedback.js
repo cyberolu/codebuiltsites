@@ -30,7 +30,7 @@ function Feedback() {
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [feedbackRef]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -60,10 +60,8 @@ function Feedback() {
         Share your experience and rate my work.
       </p>
 
-      {/* FORM */}
       <form className="feedback-form" onSubmit={handleSubmit}>
 
-        {/* Name */}
         <input
           className="feedback-input"
           placeholder="Your name..."
@@ -71,7 +69,6 @@ function Feedback() {
           onChange={(e) => setName(e.target.value)}
         ></input>
 
-        {/* Stars */}
         <div className="star-selector">
           {[1, 2, 3, 4, 5].map((star) => (
             <span
@@ -86,7 +83,6 @@ function Feedback() {
           ))}
         </div>
 
-        {/* Comment */}
         <textarea
           className="feedback-textarea"
           placeholder="Write your comment..."
@@ -99,7 +95,6 @@ function Feedback() {
         </button>
       </form>
 
-      {/* LIST – styled like testimonial cards */}
       <div className="testimonials-grid feedback-list">
         {feedbackList.map((fb) => (
           <div className="testimonial-card upgraded" key={fb.id}>
